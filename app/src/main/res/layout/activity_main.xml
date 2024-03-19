@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:padding="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/name_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="@string/app_name"
+        android:textSize="@dimen/name_app"
+        app:layout_constraintBottom_toTopOf="@+id/my_balances"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/my_balances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/my_balances"
+        android:textSize="@dimen/my_balances"
+        app:layout_constraintBottom_toTopOf="@+id/categoryRecycler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_app" />
+
+    <TextView
+        android:id="@+id/text_balances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000"
+        android:textSize="@dimen/balances"
+        app:layout_constraintBottom_toTopOf="@+id/text_currency_exchange"
+        app:layout_constraintEnd_toStartOf="@+id/categoryRecycler"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_balances"
+        app:layout_constraintVertical_bias="0.319" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryRecycler"
+        android:layout_width="289dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_currency_exchange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_balances"
+        app:layout_constraintVertical_bias="0.83" />
+
+    <TextView
+        android:id="@+id/text_currency_exchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="@dimen/text_currency_exchange"
+        android:text="@string/currency_exchange"
+        app:layout_constraintBottom_toTopOf="@+id/image_buy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoryRecycler" />
+
+
+    <TextView
+        android:id="@+id/name_image_of_sell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/name_image_of_sell"
+        android:textSize="@dimen/name_image_of_sell"
+        app:layout_constraintBottom_toBottomOf="@+id/image_buy"
+        app:layout_constraintStart_toEndOf="@+id/image_buy"
+        app:layout_constraintTop_toTopOf="@+id/image_buy" />
+
+    <TextView
+        android:id="@+id/name_image_of_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/name_image_of_buy"
+        android:textSize="@dimen/name_image_of_buy"
+        app:layout_constraintBottom_toBottomOf="@+id/image_sell"
+        app:layout_constraintStart_toEndOf="@+id/image_sell"
+        app:layout_constraintTop_toTopOf="@+id/image_sell" />
+
+    <ImageView
+        android:id="@+id/image_buy"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_currency_exchange"
+        app:srcCompat="@drawable/baseline_arrow_circle_up_24" />
+
+    <View
+        android:id="@+id/colorLine"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:background="@color/colorLine"
+        app:layout_constraintBottom_toTopOf="@+id/image_sell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_buy" />
+
+    <ImageView
+        android:id="@+id/image_sell"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/calculate_button"
+        app:layout_constraintEnd_toEndOf="@+id/image_buy"
+        app:layout_constraintStart_toStartOf="@+id/image_buy"
+        app:layout_constraintTop_toBottomOf="@+id/image_buy"
+        app:srcCompat="@drawable/baseline_arrow_circle_down_24" />
+
+
+    <EditText
+        android:id="@+id/amount_to_sell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:hint="@string/amount_to_sell"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/currency_of_sell"
+        app:layout_constraintEnd_toStartOf="@+id/currency_of_sell"
+        app:layout_constraintTop_toTopOf="@+id/currency_of_sell" />
+
+    <EditText
+        android:id="@+id/amount_to_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:hint="@string/amount_to_sell"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/currency_of_buy"
+        app:layout_constraintEnd_toStartOf="@+id/currency_of_buy"
+        app:layout_constraintTop_toTopOf="@+id/currency_of_buy" />
+
+    <TextView
+        android:id="@+id/currency_of_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/USD"
+        android:textSize="@dimen/currency_of_sell"
+        android:drawableRight="@drawable/baseline_keyboard_arrow_down_24"
+        app:layout_constraintBottom_toBottomOf="@+id/image_sell"
+        app:layout_constraintEnd_toEndOf="@+id/currency_of_sell"
+        app:layout_constraintStart_toStartOf="@+id/currency_of_sell"
+        app:layout_constraintTop_toTopOf="@+id/image_sell" />
+
+    <TextView
+        android:id="@+id/currency_of_sell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/EUR"
+        android:textSize="@dimen/currency_of_buy"
+        android:drawableRight="@drawable/baseline_keyboard_arrow_down_24"
+        app:layout_constraintBottom_toBottomOf="@+id/image_buy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.812"
+        app:layout_constraintStart_toEndOf="@+id/image_buy"
+        app:layout_constraintTop_toTopOf="@+id/image_buy" />
+
+    <TextView
+        android:id="@+id/rate_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="rate"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/amount_to_buy"
+        app:layout_constraintEnd_toStartOf="@+id/amount_to_buy"
+        app:layout_constraintStart_toEndOf="@+id/name_image_of_buy"
+        app:layout_constraintTop_toTopOf="@+id/amount_to_buy" />
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="280dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/calculate_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_sell" />
+
+    <Button
+        android:id="@+id/get_rates_button"
+        android:layout_width="280dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="92dp"
+        android:gravity="center"
+        android:text="@string/get_rates_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculate_button"
+        app:layout_constraintVertical_bias="0.005"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="name_app">20sp</dimen>
+    <dimen name="currency_of_buy">20sp</dimen>
+    <dimen name="currency_of_sell">20sp</dimen>
+    <dimen name="name_image_of_buy">20sp</dimen>
+    <dimen name="name_image_of_sell">20sp</dimen>
+    <dimen name="my_balances">15sp</dimen>
+    <dimen name="text_currency_exchange">15sp</dimen>
+    <dimen name="dialog_text">20sp</dimen>
+    <dimen name="Recycler_view">20sp</dimen>
+    <dimen name="balances">24sp</dimen>
+</resources>
