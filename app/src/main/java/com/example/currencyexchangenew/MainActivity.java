@@ -207,11 +207,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     BigDecimal amountToSell = BigDecimal.valueOf(Double.valueOf(MainActivity.this.amountToSell.getText().toString()));
-                    BigDecimal result = CurrencyCalculator.convert(
-                            MainActivity.this.currencyOfSell.getText().toString(),
-                            MainActivity.this.currencyOfBuy.getText().toString(),
-                            amountToSell);
-                    MainActivity.this.amountToBuy.setText(result.toPlainString());
+                    BigDecimal rate = CurrencyCalculator.getRate(currencyOfSell.getText().toString(),
+                            currencyOfBuy.getText().toString());
+                    BigDecimal result = CurrencyCalculator.convert(rate, amountToSell);
+                    rateText.setText(rate.toPlainString());
+                    amountToBuy.setText(result.toPlainString());
                 }
                 catch (Exception e){
 
