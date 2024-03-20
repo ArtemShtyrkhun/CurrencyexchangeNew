@@ -17,5 +17,7 @@
     <string name="shere">Shere</string>
     <string name="aboutus">Aboutus</string>
     <string name="logout">Logout</string>
+    <string name="exchangeButton">EXCHANGE</string>
+
 
 </resources>

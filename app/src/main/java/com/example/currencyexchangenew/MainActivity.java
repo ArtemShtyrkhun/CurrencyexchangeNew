@@ -49,11 +49,12 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView currencyOfSell, currencyOfBuy, rateText;
+    TextView currencyOfSell, currencyOfBuy, rateText, text_balances;
     EditText amountToSell, amountToBuy;
     RecyclerView categoryRecycler;
     CategoryAdapter categoryAdapter;
     Button calculateButton;
+    Button exchangeButton;
     Button getRatesButton;
     ArrayList<String> arrayList;
     Dialog fromDialog;
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         rateText = findViewById(R.id.rate_text);
         calculateButton = (Button) findViewById(R.id.calculate_button);
         getRatesButton = (Button) findViewById(R.id.get_rates_button);
+        exchangeButton = (Button) findViewById(R.id.exchangeButton);
+        text_balances =  findViewById(R.id.text_balances);
         //Executors.newScheduledThreadPool(1)
         //        .scheduleAtFixedRate(new RetrieveRatesTask(), 0, 5, TimeUnit.MINUTES);
         getRates();
@@ -88,36 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 getRates();
             }
         });
-
-//
-//            //add button listener
-//            calculateButton.setOnClickListener(new View.OnClickListener() {
-//
-//                @Override
-//                public void onClick(View arg0) {
-//
-//
-//                    // custom dialog
-//                    final Dialog dialog = new Dialog(context);
-//                    dialog.setContentView(R.layout.dialogfon);  // Передайем ссылку на разметку
-//                    dialog.setTitle("Заголовок не показывает"); // Установим заголовок
-//
-//
-//                    // set the custom dialog components - text, image and button
-//                    TextView text = (TextView) dialog.findViewById(R.id.dialog_text);
-//                    text.setText("Currency converted \n You have 100.00 EUR to 110.30 USD. Commision Fee: 0.70 EUR");
-//                    Button dialogButton = (Button) dialog.findViewById(R.id.dialog_button);
-//                    // if button is clicked, close the custom dialog
-//                    dialogButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            dialog.dismiss();
-//                        }
-//                    });
-//
-//                    dialog.show();  //  показать диалоговое окно
-//                }
-//            });
 
 
         currencyOfSell.setOnClickListener(new View.OnClickListener() {
@@ -218,6 +191,33 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        exchangeButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+
+// custom dialog
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialogfon);  // Передайем ссылку на разметку
+                dialog.setTitle("Заголовок не показывает"); // Установим заголовок
+
+
+                // set the custom dialog components - text, image and button
+                TextView text = (TextView) dialog.findViewById(R.id.dialog_text);
+                text.setText("Currency converted \n You have 100.00 EUR to 110.30 USD. Commision Fee: 0.70 EUR");
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialog_button);
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();  //  показать диалоговое окно
+            }
+        });
 
     }
 
@@ -309,3 +309,31 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 }
+
+//            calculateButton.setOnClickListener(new View.OnClickListener() {
+//
+//@Override
+//public void onClick(View arg0) {
+//
+//
+//// custom dialog
+//final Dialog dialog = new Dialog(context);
+//        dialog.setContentView(R.layout.dialogfon);  // Передайем ссылку на разметку
+//        dialog.setTitle("Заголовок не показывает"); // Установим заголовок
+//
+//
+//        // set the custom dialog components - text, image and button
+//        TextView text = (TextView) dialog.findViewById(R.id.dialog_text);
+//        text.setText("Currency converted \n You have 100.00 EUR to 110.30 USD. Commision Fee: 0.70 EUR");
+//        Button dialogButton = (Button) dialog.findViewById(R.id.dialog_button);
+//        // if button is clicked, close the custom dialog
+//        dialogButton.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View v) {
+//        dialog.dismiss();
+//        }
+//        });
+//
+//        dialog.show();  //  показать диалоговое окно
+//        }
+//        });
