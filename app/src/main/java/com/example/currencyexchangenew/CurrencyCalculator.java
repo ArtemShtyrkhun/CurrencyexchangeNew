@@ -20,7 +20,8 @@ public class CurrencyCalculator {
         if (from.equals("EUR")) {
             return currentRates.get(to).setScale(2, RoundingMode.HALF_DOWN);
         } else {
-            return currentRates.get(to).divide(currentRates.get(from), 6, RoundingMode.HALF_DOWN).setScale(2, RoundingMode.HALF_DOWN);
+            return currentRates.get(to).divide(currentRates.get(from), 6, RoundingMode.HALF_DOWN)
+                    .setScale(2, RoundingMode.HALF_DOWN);
         }
     }
 }

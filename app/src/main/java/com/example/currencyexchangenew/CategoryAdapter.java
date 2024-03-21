@@ -17,20 +17,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     List<Category> categories;
 
     public CategoryAdapter(Context context, List<Category> categories) {
-        this.context = context;  //страница на которой все должно быть выведено
-        this.categories = categories;  // список категорий которые должны быть выведены
+        this.context = context;
+        this.categories = categories;
     }
 
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View categoryItems = LayoutInflater.from(context).inflate(R.layout.category_item,parent,false);  //указываем дизайн
-        return new CategoryViewHolder(categoryItems);      // указываем элементы с которыми будем работать, они указываются в отдельном влож классе
+        View categoryItems = LayoutInflater.from(context).inflate(R.layout.category_item,parent,false);
+        return new CategoryViewHolder(categoryItems);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {    //создаем объект на основе вложеного класса
-        holder.category_text.setText(categories.get(position).getTitle());            // через объект обращаемся к нужным полям(category_text) и устан текс для этого поля
+    public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
+        holder.category_text.setText(categories.get(position).getTitle());
 
     }
 
@@ -41,12 +41,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     public static final class CategoryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView category_text;    //вложеный класс
+        TextView category_text;
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            category_text = itemView.findViewById(R.id.category_text);  //ссылка на нужный обьект из дизайна
+            category_text = itemView.findViewById(R.id.category_text);
         }
     }
 }

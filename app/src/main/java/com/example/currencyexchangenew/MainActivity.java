@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         getRates();
 
 
-
         currencyOfSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,9 +165,17 @@ public class MainActivity extends AppCompatActivity {
 
         calculateButton.setOnClickListener(new View.OnClickListener() {
 
-
             @Override
             public void onClick(View arg0) {
+
+//                if (Double.parseDouble(amountToSell.getText().toString())==0) {
+//                    Toast.makeText(MainActivity.this, "Enter The Number", Toast.LENGTH_SHORT).show();
+//                }
+
+//                if(amountToSell.getText().length()== 0) {
+//                    findViewById(R.id.calculate_button).setEnabled(false);
+//                }
+
 
                 try {
                     BigDecimal amountToSell = BigDecimal.valueOf(Double.valueOf(MainActivity.this.amountToSell.getText().toString()));
@@ -201,14 +208,16 @@ public class MainActivity extends AppCompatActivity {
                     dialogButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
                             dialog.dismiss();
                         }
                     });
+                    //dialog.show();
 
-                    dialog.show();
                     Balance = Balance - Double.parseDouble(amountToSell.getText().toString());
                     if (Balance>0) {
                         textBalances.setText(String.valueOf((dF.format(Balance)) + " EUR"));
+                        dialog.show();
                     } else {
                         Toast.makeText(MainActivity.this, "Insufficient funds on balance", Toast.LENGTH_SHORT).show();
                     }
@@ -237,17 +246,16 @@ public class MainActivity extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     });
-
-                    dialog.show();
+                    //dialog.show();
 
                     Balance = Balance - Double.parseDouble(amountToSell.getText().toString()) - CommissionFee;
                     if (Balance>0) {
                         textBalances.setText(String.valueOf((dF.format(Balance)) + " EUR"));
+                        dialog.show();
                     } else {
                         Toast.makeText(MainActivity.this, "Insufficient funds on balance", Toast.LENGTH_SHORT).show();
                     }
 
-                   // textBalances.setText(String.valueOf((dF.format(Balance)) + " EUR"));
 
                 }
             }

@@ -19,19 +19,11 @@ public class RetrieveRatesTask extends Thread {
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
     public static final String URL = "https://developers.paysera.com/tasks/api/currency-exchange-rates";
 
-    // TODO fix this
+
     {
         sendRequest();
     }
-//    {
-//        try {
-//            System.out.println("Running first time!");
-//            CurrencyRateHolder.setCurrencyRateModel(OBJECT_MAPPER.readValue(
-//                    MainActivity.class.getClassLoader().getResource("currency_rates.json"), CurrencyRateModel.class));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
 
     @Override
     public void start() {
