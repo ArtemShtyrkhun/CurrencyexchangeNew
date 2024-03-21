@@ -73,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
         amountToBuy = findViewById(R.id.amount_to_buy);
         rateText = findViewById(R.id.rate_text);
         calculateButton = (Button) findViewById(R.id.calculate_button);
-     //   getRatesButton = (Button) findViewById(R.id.get_rates_button);
-        exchangeButton = (Button) findViewById(R.id.exchangeButton);
         textBalances = findViewById(R.id.text_balances);
         DecimalFormat dF = new DecimalFormat( "#.###" );
 
@@ -164,9 +162,14 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+
         calculateButton.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
-            public void onClick(View v) {
+            public void onClick(View arg0) {
+
                 try {
                     BigDecimal amountToSell = BigDecimal.valueOf(Double.valueOf(MainActivity.this.amountToSell.getText().toString()));
                     BigDecimal rate = CurrencyCalculator.getRate(currencyOfSell.getText().toString(),
@@ -177,14 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
 
                 }
-            }
-        });
 
-
-        exchangeButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
                 count++;
 
                 if (count <= 5) {
