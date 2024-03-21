@@ -7,7 +7,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,8 +32,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -55,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
 //    Button getRatesButton;
     Dialog fromDialog;
     Dialog toDialog;
-    String convertFromValue, convertToValue, conversionValue;
+    String convertFromValue, convertToValue;
 
     int count = 0;
-    Double Balanse = 1000.0;
-    Double CommisionFee;  //число умножить на 0.7 и поделить на 100
+    Double Balance = 1000.0;
+    Double CommissionFee;
 
     final Context context = this;
 
@@ -195,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                     // custom dialog
                     final Dialog dialog = new Dialog(context);
                     dialog.setContentView(R.layout.dialogfon);
-                    dialog.setTitle("Заголовок не показує");
+                    dialog.setTitle("Currency converter");
 
                     // set the custom dialog components - text, image and button
                     TextView text = (TextView) dialog.findViewById(R.id.dialog_text);
@@ -213,23 +210,28 @@ public class MainActivity extends AppCompatActivity {
                     });
 
                     dialog.show();
-                    Balanse = Balanse - Double.parseDouble(amountToSell.getText().toString());
-                    textBalances.setText(String.valueOf((dF.format(Balanse)) + " EUR"));
+                    Balance = Balance - Double.parseDouble(amountToSell.getText().toString());
+                    if (Balance>0) {
+                        textBalances.setText(String.valueOf((dF.format(Balance)) + " EUR"));
+                    } else {
+                        Toast.makeText(MainActivity.this, "Insufficient funds on balance", Toast.LENGTH_SHORT).show();
+                    }
+                    textBalances.setText(String.valueOf((dF.format(Balance)) + " EUR"));
 
 
                 } else {
-                    CommisionFee = (Double.parseDouble(amountToSell.getText().toString())*0.7)/100;
+                    CommissionFee = (Double.parseDouble(amountToSell.getText().toString())*0.7)/100;
 
                     // custom dialog
                     final Dialog dialog = new Dialog(context);
                     dialog.setContentView(R.layout.dialogfon);
-                    dialog.setTitle("Заголовок не показує");
+                    dialog.setTitle("Currency converter");
 
                     // set the custom dialog components - text, image and button
                     TextView text = (TextView) dialog.findViewById(R.id.dialog_text);
                     text.setText("Currency converted \n You have " + amountToSell.getText().toString() + " "
                             + currencyOfSell.getText().toString() + " to " + amountToBuy.getText().toString() + " "
-                            + currencyOfBuy.getText().toString() + ".\n" + " Commision Fee:" + CommisionFee + " EUR");
+                            + currencyOfBuy.getText().toString() + ".\n" + " Commission Fee:" + (dF.format(CommissionFee)) + " EUR");
                     Button dialogButton = (Button) dialog.findViewById(R.id.dialog_button);
                     // if button is clicked, close the custom dialog
 
@@ -242,16 +244,19 @@ public class MainActivity extends AppCompatActivity {
 
                     dialog.show();
 
-                    Balanse = (Balanse - Double.parseDouble(amountToSell.getText().toString()) - CommisionFee);
-                    textBalances.setText(String.valueOf((dF.format(Balanse)) + " EUR"));
+                    Balance = Balance - Double.parseDouble(amountToSell.getText().toString()) - CommissionFee;
+                    if (Balance>0) {
+                        textBalances.setText(String.valueOf((dF.format(Balance)) + " EUR"));
+                    } else {
+                        Toast.makeText(MainActivity.this, "Insufficient funds on balance", Toast.LENGTH_SHORT).show();
+                    }
+
+                   // textBalances.setText(String.valueOf((dF.format(Balance)) + " EUR"));
 
                 }
             }
 
         });
-
-
-
     }
 
     private double round(double value, int places) {
@@ -305,10 +310,10 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
     // timer get.Rates 5 second
-    final Runnable tarea = new Runnable() {   public void run() {
+    final Runnable time = new Runnable() {   public void run() {
         getRates();//the operation that you want to perform }};
         ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
-        timer.scheduleAtFixedRate(tarea, 5, 5, TimeUnit.SECONDS);
+        timer.scheduleAtFixedRate(time, 5, 5, TimeUnit.SECONDS);
     }};
 }
 
