@@ -9,5 +9,5 @@
     <dimen name="text_currency_exchange">15sp</dimen>
     <dimen name="dialog_text">20sp</dimen>
     <dimen name="Recycler_view">20sp</dimen>
-    <dimen name="balances">24sp</dimen>
+    <dimen name="balances">20sp</dimen>
 </resources>

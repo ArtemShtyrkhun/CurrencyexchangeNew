@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
     Dialog toDialog;
     String convertFromValue, convertToValue, conversionValue;
 
+    int count = 0;
+    Double Balanse = 1000.0;
+    Double CommisionFee;  //число умножить на 0.7 и поделить на 100
+
     final Context context = this;
 
 
@@ -73,15 +79,10 @@ public class MainActivity extends AppCompatActivity {
      //   getRatesButton = (Button) findViewById(R.id.get_rates_button);
         exchangeButton = (Button) findViewById(R.id.exchangeButton);
         textBalances = findViewById(R.id.text_balances);
+        DecimalFormat dF = new DecimalFormat( "#.###" );
 
         getRates();
-//        getRatesButton.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View arg0) {
-//                getRates();
-//            }
-//        });
+
 
 
         currencyOfSell.setOnClickListener(new View.OnClickListener() {
@@ -187,31 +188,69 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
+                count++;
 
-                // custom dialog
-                final Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.dialogfon);
-                dialog.setTitle("Заголовок не показує");
+                if (count <= 5) {
 
-                // set the custom dialog components - text, image and button
-                TextView text = (TextView) dialog.findViewById(R.id.dialog_text);
-                text.setText("Currency converted \n You have " + amountToSell.getText().toString() + " "
-                        + currencyOfSell.getText().toString() + " to " + amountToBuy.getText().toString() + " "
-                        + currencyOfBuy.getText().toString() + ".\n" + " Commision Fee: 0.70 EUR");
-                Button dialogButton = (Button) dialog.findViewById(R.id.dialog_button);
-                // if button is clicked, close the custom dialog
+                    // custom dialog
+                    final Dialog dialog = new Dialog(context);
+                    dialog.setContentView(R.layout.dialogfon);
+                    dialog.setTitle("Заголовок не показує");
 
-                dialogButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
+                    // set the custom dialog components - text, image and button
+                    TextView text = (TextView) dialog.findViewById(R.id.dialog_text);
+                    text.setText("Currency converted \n You have " + amountToSell.getText().toString() + " "
+                            + currencyOfSell.getText().toString() + " to " + amountToBuy.getText().toString() + " "
+                            + currencyOfBuy.getText().toString() + ".\n" );
+                    Button dialogButton = (Button) dialog.findViewById(R.id.dialog_button);
+                    // if button is clicked, close the custom dialog
 
-                dialog.show();
+                    dialogButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+                    Balanse = Balanse - Double.parseDouble(amountToSell.getText().toString());
+                    textBalances.setText(String.valueOf((dF.format(Balanse)) + " EUR"));
+
+
+                } else {
+                    CommisionFee = (Double.parseDouble(amountToSell.getText().toString())*0.7)/100;
+
+                    // custom dialog
+                    final Dialog dialog = new Dialog(context);
+                    dialog.setContentView(R.layout.dialogfon);
+                    dialog.setTitle("Заголовок не показує");
+
+                    // set the custom dialog components - text, image and button
+                    TextView text = (TextView) dialog.findViewById(R.id.dialog_text);
+                    text.setText("Currency converted \n You have " + amountToSell.getText().toString() + " "
+                            + currencyOfSell.getText().toString() + " to " + amountToBuy.getText().toString() + " "
+                            + currencyOfBuy.getText().toString() + ".\n" + " Commision Fee:" + CommisionFee + " EUR");
+                    Button dialogButton = (Button) dialog.findViewById(R.id.dialog_button);
+                    // if button is clicked, close the custom dialog
+
+                    dialogButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+
+                    Balanse = (Balanse - Double.parseDouble(amountToSell.getText().toString()) - CommisionFee);
+                    textBalances.setText(String.valueOf((dF.format(Balanse)) + " EUR"));
+
+                }
             }
 
         });
+
+
 
     }
 
@@ -233,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCategoryRecycler(List<Category> categoryList) {
-        RecyclerView.LayoutManager LayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);  //делаем вывод горизонтальным
+        RecyclerView.LayoutManager LayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
 
         categoryRecycler = findViewById(R.id.categoryRecycler);
         categoryRecycler.setLayoutManager(LayoutManager);

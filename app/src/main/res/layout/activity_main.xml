@@ -37,23 +37,23 @@
         android:id="@+id/text_balances"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:text="1000EUR"
         android:textSize="@dimen/balances"
         app:layout_constraintBottom_toTopOf="@+id/text_currency_exchange"
         app:layout_constraintEnd_toStartOf="@+id/categoryRecycler"
-        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_balances"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecycler"
-        android:layout_width="289dp"
-        android:layout_height="48dp"
+        android:layout_width="252dp"
+        android:layout_height="46dp"
         android:layout_marginTop="15dp"
         app:layout_constraintBottom_toTopOf="@+id/text_currency_exchange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.991"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_balances"
         app:layout_constraintVertical_bias="0.83" />
